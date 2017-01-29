@@ -1,9 +1,9 @@
 // Setting up modules
-const path              = require('path');
-const http              = require('http');
-const express           = require('express');
-const socketIO          = require('socket.io');
-const {generateMessage} = require('./utils/message');
+const path                                       = require('path');
+const http                                       = require('http');
+const express                                    = require('express');
+const socketIO                                   = require('socket.io');
+const {generateMessage, generateLocationMessage} = require('./utils/message');
 
 // Setting up local variables
 const publicPath = path.join(__dirname, '..', 'public');
@@ -34,6 +34,13 @@ io.on('connection', (socket) => {
         io.emit('newMessage', generateMessage(message.from, message.text));
         // If message is received, we acknowledge it
         callback('This is from the server');
+    });
+
+    // Broadcasts location message to entire chat app
+    socket.on('createLocationMessage', (message) => {
+        console.log('new location message', message);
+
+        io.emit('newLocationMessage', generateLocationMessage('Admin', message.latitude, message.longitude));
     });
 
 /*-----------------------------Custom events end-----------------------*/
