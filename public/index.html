@@ -11,17 +11,7 @@
 
     <!-- Javascript runs after socket io loads -->
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var socket = io();
-        socket.on('connect', () => {
-            // Will print in browser console
-            console.log('Connected to server');
-        });
-
-        socket.on('disconnect', () => {
-            console.log('Disconnected to server');
-        });
-    </script>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>

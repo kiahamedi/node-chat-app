@@ -15,7 +15,22 @@ app.use(express.static(publicPath));
 
 // Listen to a new connection from client
 io.on('connection', (socket) => {
-    console.log('New user connected');
+    console.log('New client connected');
+
+/*-----------------------------Custom events begin-----------------------*/
+
+    // listening to client's new message event 
+    socket.on('createMessage', (newMessage) => {
+        console.log('new message', newMessage);
+        // sends client's new message to everyone on the url
+        io.emit('newMessage', {
+            from: newMessage.from,
+            text: newMessage.text,
+            createdAt: new Date().getTime()
+        });
+    });
+
+/*-----------------------------Custom events end-----------------------*/
 
     socket.on('disconnect', () => {
         console.log('Client disconnected');
