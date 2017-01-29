@@ -1,4 +1,5 @@
 var socket = io();
+
 socket.on('connect', function() {
     // Will print in browser console
     console.log('Connected to server');
