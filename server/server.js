@@ -18,8 +18,22 @@ io.on('connection', (socket) => {
     console.log('New client connected');
 
 /*-----------------------------Custom events begin-----------------------*/
+    // When new user joins, he gets a greeting from the admin 
+    socket.emit('newMessage', {
+        from: 'Admin',
+        text: 'Welcome to the chat app',
+        createdAt: new Date().getTime()
+    });
 
-    // listening to client's new message event 
+    // new user login is broadcast to all other users
+    socket.broadcast.emit('newMessage', {
+        from: 'Mayank',
+        text: 'Mayank just joined the chat app',
+        createdAt: new Date().getTime()
+    });
+
+    // listening to client's create message event 
+    // broadcasts the message to the entire chat app
     socket.on('createMessage', (newMessage) => {
         console.log('new message', newMessage);
         // sends client's new message to everyone on the url
