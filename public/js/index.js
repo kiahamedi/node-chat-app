@@ -1,6 +1,25 @@
 var socket         = io();
 var locationButton = $('#send-location');
 
+// auto-scrolling
+function scrollToBottom() {
+    // Selectors
+    var messages          = $('#messages');
+    var newMessage        = messages.children('li:last-child'); // last child of list
+
+    // Heights
+    var clientHeight      = messages.prop('clientHeight');
+    var scrollTop         = messages.prop('scrollTop');
+    var scrollHeight      = messages.prop('scrollHeight');
+    var newMessageHeight  = newMessage.innerHeight();
+    var lastMessageHeight = newMessage.prev().innerHeight();
+
+    // if messages have overloaded into below the screen
+    if (clientHeight + scrollTop + newMessageHeight + lastMessageHeight >= scrollHeight){
+        messages.scrollTop(scrollHeight);
+    }
+};
+
 socket.on('connect', function() {
     // Will print in browser console
     console.log('Connected to server');
@@ -22,6 +41,7 @@ socket.on('newMessage', function(message) {
     });
 
     $('#messages').append(html);
+    scrollToBottom();
 });
 
 // new location message from server , shown in browser to chat app
@@ -38,6 +58,7 @@ socket.on('newLocationMessage', function(message) {
     });
 
     $('#messages').append(html);
+    scrollToBottom();
 });
 
 // When user submits form (message)
