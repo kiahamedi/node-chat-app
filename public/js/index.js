@@ -12,13 +12,16 @@ socket.on('connect', function() {
 socket.on('newMessage', function(message) {
     console.log('New message', message);
 
-    // Adding a timestamp
-    var formattedTime = new moment(message.createdAt).format('h:mm a');
+    var formattedTime = new moment(message.createdAt).format('h:mm a')
 
-    // Adding new message to chat app 
-    var li = $('<li></li>')
-    li.text(`${message.from} ${formattedTime}: ${message.text}`);    
-    $('#messages').append(li);
+    var template = $('#message-template').html();
+    var html = Mustache.render(template, {
+        from: message.from,
+        text: message.text,
+        createdAt: formattedTime
+    });
+
+    $('#messages').append(html);
 });
 
 // new location message from server , shown in browser to chat app
@@ -27,15 +30,14 @@ socket.on('newLocationMessage', function(message) {
 
     var formattedTime = new moment(message.createdAt).format('h:mm a');
 
-    // Adding new message to chat app 
-    var li = $('<li></li>');
-    // target gets the link to open in a new tab
-    var a = $('<a target="_blank">My current location</a>'); 
-    li.text(`${message.from} ${formattedTime}: `);    
-    // Setting a hyperlink of the google map location
-    a.attr('href', message.url);
-    li.append(a);
-    $('#messages').append(li);
+    var template = $('#location-message-template').html();
+    var html = Mustache.render(template, {
+        from: message.from,
+        url: message.url,
+        createdAt: formattedTime 
+    });
+
+    $('#messages').append(html);
 });
 
 // When user submits form (message)
