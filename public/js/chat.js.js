@@ -1,7 +1,7 @@
 var socket         = io();
 var locationButton = $('#send-location');
 
-// auto-scrolling
+// auto-scrolling if user can see the bottom most message
 function scrollToBottom() {
     // Selectors
     var messages          = $('#messages');
