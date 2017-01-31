@@ -21,16 +21,20 @@ io.on('connection', (socket) => {
     console.log('New client connected');
 
 /*-----------------------------Custom events begin-----------------------*/
-    // When new user joins, he gets a greeting from the admin 
-    socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
-
-    // new user login is broadcast to all other users
-    socket.broadcast.emit('newMessage', generateMessage('Admin', 'New user joined'));
 
     socket.on('join', (params, callback) => {
         if (!isRealString(params.name) || !isRealString(params.room)){
             callback('Name and room name are required');
         }
+
+        // socket.id()
+
+        // socket io rooms
+        socket.join(params.room);
+        // When new user joins, he gets a greeting from the admin 
+        socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+        // new user login is broadcast to all other users in the chat room
+        socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined`));
 
         callback();
     });
