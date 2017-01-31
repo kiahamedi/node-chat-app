@@ -20,9 +20,23 @@ function scrollToBottom() {
     }
 };
 
+// Joining a room
 socket.on('connect', function() {
     // Will print in browser console
     console.log('Connected to server');
+
+    // name and chat room info
+    var params = $.deparam(window.location.search);
+
+    // Joining a chat room
+    socket.emit('join', params, function (err){
+        if (err){
+            alert(err);
+            window.location.href = '/'; // redirecting to index.html
+        } else {
+            console.log('No error');
+        }
+    });
 });
 
 /*-----------------------------Custom events begin-----------------------*/
