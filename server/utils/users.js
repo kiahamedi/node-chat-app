@@ -15,8 +15,6 @@ class Users{
 
         if (user){
             this.users = this.users.filter((user) => user.id !== id);
-        } else {
-
         }
 
         return user;

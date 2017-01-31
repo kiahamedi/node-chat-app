@@ -43,8 +43,6 @@ socket.on('connect', function() {
 
 // new message from server , shown in browser to chat app
 socket.on('newMessage', function(message) {
-    console.log('New message', message);
-
     var formattedTime = new moment(message.createdAt).format('h:mm a')
 
     var template = $('#message-template').html();
@@ -60,8 +58,6 @@ socket.on('newMessage', function(message) {
 
 // new location message from server , shown in browser to chat app
 socket.on('newLocationMessage', function(message) {
-    console.log('New location message', message);
-
     var formattedTime = new moment(message.createdAt).format('h:mm a');
 
     var template = $('#location-message-template').html();
@@ -82,7 +78,6 @@ $('#message-form').on('submit', function (e){
     var messageTextBox = $('[name=message');
 
     socket.emit('createMessage', {
-        from: 'User', 
         text: messageTextBox.val()
     }, function() {
         messageTextBox.val('');
@@ -108,6 +103,17 @@ locationButton.on('click', function () {
         locationButton.removeAttr('disabled').text('Send location');
         alert('Unable to fetch location');
     });
+});
+
+// update chat room list
+socket.on('updateUserList', function(users) {
+    var ol = $('<ol></ol>');
+
+    users.forEach(function (user){
+        ol.append($('<li></li>').text(user));
+    });
+
+    $('#users').html(ol);
 });
 
 /*-----------------------------Custom events end-----------------------*/
