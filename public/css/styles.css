@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'vazir';
+  src: url('vazir.ttf')
+}
+
+
 button,
 button:hover {
     border: none;
@@ -14,9 +20,10 @@ button:hover {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: vazir
     font-weight: 300;
     font-size: .95rem
+
 }
 
 li,
@@ -28,6 +35,7 @@ h3 {
     font-weight: 600;
     text-align: center;
     font-size: 1.5rem
+
 }
 
 button {
@@ -68,6 +76,8 @@ button:disabled {
     width: 230px
 }
 
+
+
 .form-field {
     margin: 20px 0
 }
@@ -107,6 +117,7 @@ button:disabled {
 .chat__sidebar li {
     background: #e6eaee;
     padding: 10px
+
 }
 
 .chat__sidebar h3 {
@@ -161,7 +172,12 @@ button:disabled {
 
 .message__title {
     display: flex;
-    margin-bottom: 5px
+    background-color: #dac5f3;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 150px;
+    padding: 10px;
+    margin: 5px 0;
 }
 
 .message__title h4 {
@@ -171,6 +187,14 @@ button:disabled {
 
 .message__title span {
     color: #999
+}
+
+.container {
+  border: 2px solid #dedede;
+  background-color: #c5daf3;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 0;
 }
 
 @media (max-width:600px) {
@@ -189,4 +213,8 @@ button:disabled {
     .chat__footer button {
         margin-right: 0
     }
+}
+
+body {
+  font-family: vazir
 }

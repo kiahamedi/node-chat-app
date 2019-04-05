@@ -3,36 +3,38 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Chat | ChatApp</title>
+    <title>اتاق گفتگو | مدادفشاری</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body class="chat">
-    <div class="chat__sidebar">
-        <h3>People</h3>
+   
+    <div class="chat__main">
+        <!-- All the messages in the chat app -->
+        <ol id="messages" dir="rtl" class="chat__messages"></ol>
+        <div class="chat__footer">
+            <form id="message-form">
+                <input name="message" dir="rtl" type="text" placeholder="متن پیام" autofocus autocomplete="off" />
+                <button>ارسال</button>
+            </form>
+           <!--  <button id="send-location">Send location</button>-->
+        </div>
+    </div>
+     <div class="chat__sidebar" dir="rtl">
         <div id="users">
         </div>
     </div>
-    <div class="chat__main">
-        <!-- All the messages in the chat app -->
-        <ol id="messages" class="chat__messages"></ol>
-        <div class="chat__footer">
-            <form id="message-form">
-                <input name="message" type="text" placeholder="Message" autofocus autocomplete="off" />
-                <button>Send</button>
-            </form>
-            <button id="send-location">Send location</button>
-        </div>
-    </div>
     <!-- for markup using mustache.js to render in index.js-->
+    
     <script id="message-template" type="text/template">
         <li class="message">
-            <div class="message__title">
-                <h4>{{from}}</h4>
+            <div class="message__title" >
                 <span>{{createdAt}}</span>
+                <h4>{{from}}</h4>
+                
             </div>
-            <div class="message__body">
+            <div class="container" >
                 <p>{{text}}</p>
             </div>
         </li>

@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
 
     socket.on('join', (params, callback) => {
         if (!isRealString(params.name) || !isRealString(params.room)){
-            return callback('Name and room name are required');
+            return callback('نام و نام اتاق اجباری است');
         }
 
         // socket io rooms
@@ -37,9 +37,9 @@ io.on('connection', (socket) => {
         io.to(params.room).emit('updateUserList', users.getUserList(params.room));
 
         // When new user joins, he gets a greeting from the admin 
-        socket.emit('newMessage', generateMessage('Admin', 'Welcome to the chat app'));
+        socket.emit('newMessage', generateMessage('جارچی', 'به اتاق گفتگوی مدادفشاری خوش آمدید'));
         // new user login is broadcast to all other users in the chat room
-        socket.broadcast.to(params.room).emit('newMessage', generateMessage('Admin', `${params.name} has joined`));
+        socket.broadcast.to(params.room).emit('newMessage', generateMessage('جارچی', `${params.name} وارد شد`));
 
         callback();
     });
@@ -74,7 +74,7 @@ io.on('connection', (socket) => {
         
         if (user){
             io.to(user.room).emit('updateUserList', users.getUserList(user.room)); // sending updated user list
-            io.to(user.room).emit('newMessage', generateMessage('Admin', `${user.name} has left`));
+            io.to(user.room).emit('newMessage', generateMessage('جارچی', `خارج شد ${user.name}`));
         }
     });
 });
