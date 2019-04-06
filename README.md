@@ -9,8 +9,8 @@
 
 ## Downloading
 ```bash
-$ git clone https://github.com/mayankamencherla/node-chat-app.git
+$ git clone https://github.com/kiahamedi/node-chat-app.git
 ```
 
 # Heroku 
-> The app is hosted on heroku here : http://online-chat-room.herokuapp.com/
+> The app is hosted on heroku here : https://agile-island-30135.herokuapp.com
