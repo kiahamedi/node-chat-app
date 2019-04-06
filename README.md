@@ -10,6 +10,9 @@
 ## Downloading
 ```bash
 $ git clone https://github.com/kiahamedi/node-chat-app.git
+$ cd node-chat-app/
+$ npm install
+$ npm start 
 ```
 
 # Heroku 
