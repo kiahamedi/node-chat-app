@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 <!-- [![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg)]() -->
 
-![alt text](https://github.com/mayankamencherla/node-chat-app/blob/master/chat.PNG)
+![alt text](https://raw.githubusercontent.com/kiahamedi/node-chat-app/master/Screenshot_2019-04-05_21-48-57.png)
 
 ## Downloading
 ```bash
